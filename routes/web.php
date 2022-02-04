@@ -11,6 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/top','SpotController@index', );
+Route::get('/01/store', 'SpotController@create');
+Route::post('/top', 'SpotController@store');

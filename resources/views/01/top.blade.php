@@ -10,21 +10,27 @@
     
     <body>
         
-        [<a href='/01/store'>場所登録</a>]
+        [<a href='/01/store'>スポット登録</a>]
         
         <div class='spots'>
             @foreach ($spots as $spot)
                 <div class='spot'>
-                    <h1 class='spot_name'>{{$spot->spot_name}}</h1>
+                    <h1 class='spot_name'><a href="/spot/{{ $spot->id }}">{{$spot->spot_name}}</a></h1>
                     <p class='erea_id'>{{$spot->erea->erea_name}}</p>
                     @foreach($spot->categories as $category)   
                        {{$category->category_name}}
                     @endforeach
+                    <h3>住所</h3>
+                    <p class='address'>{{$spot->address}}</p>
+                    <h3>営業時間</h3>
                     <p class='open_close'>{{$spot->open_close}}</p>
+                    <h3>定休日</h3>
                     <p class='off'>{{$spot->off}}</p>
                 </div>
             @endforeach
         </div>
-        
+        <div class='paginate'>
+            {{ $spots->links() }}
+        </div>
     </body>
 </html>

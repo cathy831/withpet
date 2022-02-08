@@ -12,10 +12,11 @@
        
        <form action="/top" method="POST">
             @csrf
-            
+            spot_name
             <div class="spot_name">
                 <h2>場所名・店名</h2>
-                <input type="text" name="spot[spot_name]" placeholder="50字以内"/>
+                <input type="text" name="spot[spot_name]" placeholder="50字以内" value="{{ old('spot.spot_name') }}"/>
+                <p class="spot_name__error" style="color:red">{{ $errors->first('spot.spot_name') }}</p>
             </div>
             
             <div class="form-group">
@@ -38,17 +39,20 @@
             
             <div class="address">
                 <h2>住所</h2>
-                <input type="text" name="spot[address]" placeholder="100字以内"/>
+                <input type="text" name="spot[address]" placeholder="100字以内" value="{{ old('spot.address') }}"/>
+                <p class="address__error" style="color:red">{{ $errors->first('spot.address') }}</p>
             </div>
             
             <div class="open_close">
                 <h2>営業時間</h2>
-                <input type="text" name="spot[open_close]" placeholder="100字以内"/>
+                <input type="text" name="spot[open_close]" placeholder="100字以内" value="{{ old('spot.open_close') }}"/>
+                <p class="open_close__error" style="color:red">{{ $errors->first('spot.open_close') }}</p>
             </div>
             
             <div class="off">
                 <h2>定休日</h2>
-                <input type="text" name="spot[off]" placeholder="100字以内"/>
+                <input type="text" name="spot[off]" placeholder="100字以内" value="{{ old('spot.off') }}"/>
+                <p class="off__error" style="color:red">{{ $errors->first('spot.off') }}</p>
             </div>
             {{--入れ方が合ってるか分からない。Reviewから引っ張ってくる内容なのでSpotと同じ感じでいいのか。
             <div class="body">
@@ -58,7 +62,7 @@
             リダイレクト先に入れてしまえば書きやすい
             --}}
             <input type="submit" value="保存"/>
-            <div class="back">[<a href="/top">back</a>]</div>
+            <div class="back">[<a href="/top">戻る</a>]</div>
         </form>
        
     </body>

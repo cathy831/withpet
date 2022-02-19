@@ -14,30 +14,30 @@
             </div>
             
             <div class='content__category_id'>
-              <label for="category-id">{{ __('カテゴリー') }}<span class="badge badge-danger ml-2">{{ __('(必須)') }}</span></label>
-                 <select class="form-control" id="category-id" name="category_id">
-                     {{-- value="{{$category->category_name}}--}}
-                     @foreach ($categories as $category)
-                           <!-- 初期表示時 -->
-                           @if ($category->id == old('id'))
-                              <option value="{{ $category->id }}" selected>{{ $category->category_name }}</option>
-                           @else
-                              <option value="{{ $category->id }}">{{ $category->category_name }}</option>
-                           @endif
-                     @endforeach
-                 </select>    
+              <h2>目的</h2>
+                @foreach ($categories as $category)
+                    @if ($spot->categories->contains('id', $category->id))
+                        <input type="checkbox" name="category_id[]" value="{{ $category->id }}" checked>
+                    @else
+                        <input type="checkbox" name="category_id[]" value="{{ $category->id }}">
+                    @endif
+                    <label for="category">
+                        {{ $category->category_name }}
+                    </label>
+                @endforeach
             </div>
             
-            <div class='content__erea_id'>
-              <label for="erea-id">{{ __('エリア') }}<span class="badge badge-danger ml-2">{{ __('(必須)') }}</span></label>
-                 <select class="content__erea_id" id="erae-id" name="erea_id">
-                     {{-- value="{{ $erea->erea_name }}--}}
-                     @foreach ($ereas as $erea)
-                       <option value="{{ $erea->id }}">{{ $erea->erea_name }}</option>
-                     @endforeach
-                 </select>
+            <div class="content__erea_id">
+              <h2>エリア</h2>    
+                @foreach($ereas as $erea)
+　　              <input type="radio" name="erea_id" id="erea_id"  value="{{ $erea->id }}" 
+                    {{ $erea->id === old('erea_id', $spot->erea->id) ? 'checked' : ''}}/>
+                  <label for="erea">
+                    {{ $erea->erea_name }}
+                  </label>  
+                @endforeach
             </div>
-            
+           
             <div class='content__address'>
                 <h3>住所</h3>
                 <input type='text' name='spot[address]' placeholder="100字以内" value="{{ $spot->address }}">
@@ -56,7 +56,10 @@
                 <p class="off__error" style="color:red">{{ $errors->first('spot.off') }}</p>
             </div>
             
-            <input type="submit" value="保存">
+            <div class="footer">
+                <input type="submit" value="保存">
+                <a href="/spot/{{$spot->id}}">戻る</a>
+            </div>
         </form>
     </div>
 </body>

@@ -10,8 +10,53 @@
     
     <body>
         
-        [<a href='/01/store'>スポット登録</a>]
+        <p>[<a href='/store'>スポット登録</a>]</p>
+        <p>[<a href='/myreview'>投稿済みレビューを見る</a>]</p>
         
+    {{--チェックボックス検索の実装--}}
+        <div class='filter_search'>
+            <h2>スポット検索</h2>
+            {{--↑あとで消す--}}
+            <div class="filter_tag">
+                <form action="/top" method="GET">
+                    @csrf
+                {{--actionの後は動作に名前をつける感覚。methodはRouteの後と一致--}}
+                <h3>目的</h3>
+                <p>複数選択可</p>
+                    @foreach($categories as $category)
+　　                    <input type="checkbox" name="category_id[]" id="category_id"  value="{{ $category->id }}" 
+                            {{ $category->id == old('category') ? 'checked' : ''}}  >
+                        <label for="category">
+                            {{ $category->category_name  }}
+                        </label>  
+                    @endforeach
+                <h3>エリア</h3>
+                <p>複数選択不可</p>
+                    @foreach($ereas as $erea)
+　　                    <input type="radio" name="erea_id" id="erea_id"  value="{{ $erea->id }}" 
+                            {{ $erea->id == old('erea') ? 'checked' : ''}}/>
+                        <label for="erea">
+                            {{ $erea->erea_name  }}
+                        </label>  
+                    @endforeach
+            </div>
+            <br>
+            <br>
+            <div>
+                <input type="submit" value="検索">
+            </div>
+            </form>
+        </div>
+        
+    {{--実際は人気項目を表示させたい。要編集。--}}
+        @if($spots->count())
+        <div class='search_result'>
+            @foreach($category_name as $category)
+               {{ $category->category_name }}
+            @endforeach
+            {{ $erea_name }}
+            検索結果
+        </div>
         <div class='spots'>
             @foreach ($spots as $spot)
                 <div class='spot'>
@@ -29,8 +74,16 @@
                 </div>
             @endforeach
         </div>
+        
+        @else
+        
+        
+        @endif
+        
+        {{--つけれるならつけたいペジネーション
         <div class='paginate'>
             {{ $spots->links() }}
         </div>
-    </body>
+        --}}
+   </body>
 </html>

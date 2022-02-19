@@ -28,7 +28,11 @@ class Spot extends Model
     
     public function erea()
     {
-    return $this->belongsTo('App\Erea');
+      return $this->belongsTo('App\Erea');
     }
     
+    public function reviews()   
+    {
+      return $this->hasMany('App\Review');  
+    }
 }

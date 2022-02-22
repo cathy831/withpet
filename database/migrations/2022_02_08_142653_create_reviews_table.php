@@ -15,7 +15,7 @@ class CreateReviewsTable extends Migration
     {
         Schema::create('reviews', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->text('body',1000);
+            $table->text('body',1000)->nullable();
             $table->integer('spot_id')->unsigned();
             $table->timestamps();
             $table->softDeletes();

@@ -17,17 +17,29 @@
             @foreach($review['reviews'] as $review)
             <!--連想配列、キーと値をセットで扱う。コントローラーを連想配列でかくとこの書き方-->
                 <p>{{$review->body}}</p>
+                <!--クチコミ本文の表示-->
                 
-                <p class="edit">[<a href="/update/{{ $review->spot_id }}">レビューの編集</a>]</p>
+                <p>
+                @foreach($images as $image)
+                    @if($image->url)
+                        <img src="https://withpet.s3.ap-northeast-1.amazonaws.com/{{ $image->url }}">
+                        <!--写真の表示-->
+                    @endif
+                @endforeach
+                </p>
+                
+                <p class="edit">[<a href="/review/{{ $review->id }}">レビューの編集</a>]</p>
+                 <!--レビュー編集の画面に飛ばした時に既にあるクチコミを保持するように-->
             
             　　<form action="/review/{{ $review->id }}" id="form_{{ $review->id }}" method="post" style="display:inline">
             　　@csrf
             　　@method('DELETE')
                 　　<div class="delete">
                     　　<button type="button" onclick="deletePost({{$review->id}})">delete</button>
-                    　　<!--submitにするといきなり送信されてしまうのでtypeに注意.関数名()-->
+                    　　<!--submitにするといきなり送信されてしまうのでtypeに注意.関数名()を書いてjavascriptを挟む-->
                 　　</div>
             　　</form>
+            　　
             @endforeach
 
         @endforeach

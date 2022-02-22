@@ -8,6 +8,7 @@ use App\Category;
 use App\Erea;
 use App\Review;
 use App\User;
+use App\Image;
 use App\Http\Requests\SpotRequest;
 use Illuminate\Support\Facades\DB;
 
@@ -19,9 +20,11 @@ class SpotController extends Controller
         $this->erea = new Erea();
         $this->review = new Review();
         $this->user = new User();
+        $this->image = new Image();
     }
     
     public function index(Request $request, Spot $spot)
+    // スポットの一覧表示
     {
         $categories = $this->category->get();
         $ereas = $this->erea->get();
@@ -55,19 +58,23 @@ class SpotController extends Controller
         return view('01/top', compact('spots', 'erea','categories','ereas','category_name','erea_name'));
     }
     
-    public function show(Spot $spot)
+    public function show(Request $request, Spot $spot)
+    // 各スポットの詳細表示
     {
-        return view('01/spot')->with(['spot' => $spot]);
+        $images = $this->image->get();
+        return view('01/spot',compact('images'))->with(['spot' => $spot]);
     }
    
     public function create(Request $request)
+    // 新規スポットの投稿画面表示
     {
         $categories = $this->category->get();
         $ereas = $this->erea->get();
         return view('01/store', compact('categories','ereas'));
     }
     
-    public function store(SpotRequest $request, Spot $spot) 
+    public function store(SpotRequest $request, Spot $spot)
+    // 新規スポットの保存
     {
         $input = $request['spot'];
         //store.bladeのinput〜name=のspotの情報を引き出し。
@@ -90,6 +97,7 @@ class SpotController extends Controller
     }
     
     public function edit(Spot $spot)
+    // 投稿済みスポットの編集画面表示
     {
         $categories = $this->category->get();
         $ereas = $this->erea->get();
@@ -98,6 +106,7 @@ class SpotController extends Controller
     }
     
     public function update(SpotRequest $request, Spot $spot, Category $categories)
+    // 投稿済みスポットの編集内容保存
     {
         $input_spot = $request['spot'];
         $input4 = $request['erea_id'];
@@ -111,6 +120,7 @@ class SpotController extends Controller
     }
     
     public function delete(Spot $spot)
+    // スポットの削除
     {
         $spot->delete();
         return redirect('/top');

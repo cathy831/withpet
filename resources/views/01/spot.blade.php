@@ -24,17 +24,25 @@
         <!--CSSで調整後は消す-->
         @foreach($spot->reviews as $review) 
             <p class='review'>
-                <h6>{{$review->user->nickname}} さん</h6>
+                {{--<h6>{{$review->user->nickname}} さん</h6>--}}
                 <p>{{$review->body}}</p>
             </p>
+            
+            <p>
+                @foreach($images as $image)
+                    @if($image->url)
+                        <img src="https://withpet.s3.ap-northeast-1.amazonaws.com/{{ $image->url }}">
+                        <!--写真の表示-->
+                    @endif
+                @endforeach
+            </p>
+            {{--写真のパスの書き方に注意,blade上はフルパス,コントローラー上は普通のパス。全部の写真を表示しようとしてくる？？--}}
         @endforeach
-        {{--reviewとspotは多対1。spotの情報の中にreviewを組み込みたい--}}
         
         <div class="footer">
             <p class="edit">[<a href="/update/{{ $spot->id }}">スポット情報の更新</a>]</p>
-            {{--スポットの情報更新画面に飛ぶ--}}
                 
-            <p class="review">[<a href="/review/{{ $spot->id }}">クチコミを書く</a>]</p>
+            <p class="review">[<a href="/review/create/{{ $spot->id }}">クチコミを書く</a>]</p>
             
             <a href="/top">戻る</a>
             

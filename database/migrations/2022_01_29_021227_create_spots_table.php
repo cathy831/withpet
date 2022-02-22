@@ -17,6 +17,7 @@ class CreateSpotsTable extends Migration
             $table->bigIncrements('id');
             $table->string('spot_name', 50);
             $table->integer('erea_id')->unsigned();
+            $table->string('address', 100);
             $table->string('open_close', 100);
             $table->string('off', 100);
             $table->timestamps();

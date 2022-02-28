@@ -34,7 +34,9 @@
                                 {{ $erea->erea_name  }}
                             </label>  
                         @endforeach
-                    <input type="submit" value="検索">
+                    <div class="serch_button">
+                        <input type="submit" value="検索">
+                    </div>
                 </form>
              </div>
         </div>

@@ -1,3 +1,7 @@
+@extends('layouts.app')　　　　　　　　　　　　　　　　　　
+
+@section('content')
+
 <!DOCTYPE HTML>
 <html lang="{{ str_replace("_", "-", app()->getLocale()) }}">
     <head>
@@ -21,8 +25,8 @@
                 
                 <p>
                 @foreach($images as $image)
-                    @if($image->url)
-                        <img src="https://withpet.s3.ap-northeast-1.amazonaws.com/{{ $image->url }}">
+                    @if($image->review_id == $review->id)
+                        <img src="{{ asset('https://withpet.s3.ap-northeast-1.amazonaws.com/' . $image->url) }}">
                         <!--写真の表示-->
                     @endif
                 @endforeach
@@ -59,3 +63,5 @@
         </script>
     </body>
 </html>
+　　　　　　　　　　　　  　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　
+@endsection

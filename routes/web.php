@@ -10,15 +10,25 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::group(['middleware' => ['auth']], function(){
+// //ログインユーザーのみ使える機能
 
 // web.phpの01を消したらbladeのa.hrefタグの変更、コントローラーのリダイレクトの部分
-
 Route::get('/top','SpotController@index', );
 //スポットの表示
 //検索したい条件をデータベースに送って表示もする
 
 Route::get('/spot/{spot}', 'SpotController@show');
 //スポットの詳細表示
+
+Route::get('/newuser', 'UserController@create');
+//ユーザー新規登録画面の表示
+Route::post('/top', 'UserController@store');
+//ユーザー新規登録の保存
+
+
+
+
 
 Route::get('/store', 'SpotController@create');
 //スポット新規投稿の画面表示
@@ -32,7 +42,6 @@ Route::put('/spot/{spot}', 'SpotController@update');
 
 Route::delete('/spot/{spot}', 'SpotController@delete');
 //スポットの削除
-
 
 Route::get('/review/create/{spot}', 'ReviewController@add');
 //レビューの新規投稿の画面表示
@@ -49,3 +58,9 @@ Route::get('/myreview','ReviewController@show');
 
 Route::delete('/review/{review}', 'ReviewController@delete');
 //レビューの削除
+
+});
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

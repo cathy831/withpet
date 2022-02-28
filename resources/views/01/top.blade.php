@@ -1,12 +1,7 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>WithPet</title>
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;600&display=swap" rel="stylesheet">
-    </head>
+@extends('layouts.app')　　　　　　　　　　　　　　　　　　
+
+@section('content')
+
     
     <body>
         
@@ -21,31 +16,27 @@
                 <form action="/top" method="GET">
                     @csrf
                 {{--actionの後は動作に名前をつける感覚。methodはRouteの後と一致--}}
-                <h3>目的</h3>
-                <p>複数選択可</p>
-                    @foreach($categories as $category)
-　　                    <input type="checkbox" name="category_id[]" id="category_id"  value="{{ $category->id }}" 
-                            {{ $category->id == old('category') ? 'checked' : ''}}  >
-                        <label for="category">
-                            {{ $category->category_name  }}
-                        </label>  
-                    @endforeach
-                <h3>エリア</h3>
-                <p>複数選択不可</p>
-                    @foreach($ereas as $erea)
-　　                    <input type="radio" name="erea_id" id="erea_id"  value="{{ $erea->id }}" 
-                            {{ $erea->id == old('erea') ? 'checked' : ''}}/>
-                        <label for="erea">
-                            {{ $erea->erea_name  }}
-                        </label>  
-                    @endforeach
-            </div>
-            <br>
-            <br>
-            <div>
-                <input type="submit" value="検索">
-            </div>
-            </form>
+                    <h3>目的</h3>
+                    <p>複数選択可</p>
+                        @foreach($categories as $category)
+                            <input type="checkbox" name="category_id[]" id="category_id" value="{{ $category->id }}" 
+                                {{ $category->id == old('category') ? 'checked' : ''}} />
+                            <label for="category">
+                                {{ $category->category_name  }}
+                            </label>  
+                        @endforeach
+                    <h3>エリア</h3>
+                    <p>複数選択不可</p>
+                        @foreach($ereas as $erea)
+                            <input type="radio" name="erea_id" id="erea_id" value="{{ $erea->id }}" 
+                                {{ $erea->id == old('erea') ? 'checked' : ''}}/>
+                            <label for="erea">
+                                {{ $erea->erea_name  }}
+                            </label>  
+                        @endforeach
+                    <input type="submit" value="検索">
+                </form>
+             </div>
         </div>
         
     {{--実際は人気項目を表示させたい。要編集。--}}
@@ -57,6 +48,7 @@
             {{ $erea_name }}
             検索結果
         </div>
+        <br>
         <div class='spots'>
             @foreach ($spots as $spot)
                 <div class='spot'>
@@ -86,4 +78,5 @@
         </div>
         --}}
    </body>
-</html>
+
+@endsection

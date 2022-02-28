@@ -1,3 +1,8 @@
+@extends('layouts.app')　　　　　　　　　　　　　　　　　　
+
+@section('content')
+
+<!--新規クチコミ登録画面-->
 <!DOCTYPE HTML>
 <html lang="{{ str_replace("_", "-", app()->getLocale()) }}">
     <head>
@@ -36,3 +41,5 @@
        </form>
     </body>
 </html>
+　　　　　　　　　　　　  　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　
+@endsection

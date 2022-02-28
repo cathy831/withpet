@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Review;
 use App\Spot;
-use App\User;
+// use App\User;
 use App\Image;
 use Storage;
 use Illuminate\Support\Facades\DB;
@@ -14,7 +14,7 @@ class ReviewController extends Controller
 {
     public function __construct()
     {
-        $this->user = new User();
+        // $this->user = new User();
         $this->spot = new Spot();
         $this->review = new Review();
         $this->image = new Image();
@@ -51,11 +51,11 @@ class ReviewController extends Controller
     //レビュー新規投稿の保存メソッド
     {   
         $input = $request['review'];
-        //store.bladeのinput〜name=のspotの情報を引き出し。
+        //review.bladeのinput〜name=のreviewの情報を引き出し。
         $input += ['spot_id' => $spot->id];
         
         $review->fill($input)->save();
-        //インスタンスの空の$spotに$inputの情報を渡す。
+        //インスタンスの空の$reviewに$inputの情報を渡す。
         
         $images = new Image;
         $image = $request->file('image');
@@ -80,26 +80,32 @@ class ReviewController extends Controller
         return view('01/review', compact('review'))->with(['spot' => $spot]);
     }
     
-    public function create(Request $request, Review $review)
+    public function create(Request $request, Review $review, Spot $spot)
     // 投稿済みレビューの編集の保存メソッド
     {
-      $images = new Image;
-      $form = $request->all();
+        $input = $request['review'];
+        //review.bladeのinput〜name=のreviewの情報を引き出し。。
+        $input += ['spot_id' => $review->spot_id];
+        
+        $review->fill($input)->save();
+        //インスタンスの空の$reviewに$inputの情報を渡す。
+        
+        $images = new Image;
 
-      //s3アップロード開始
-      $image = $request->file('image');
-      // バケットの`myprefix`フォルダへアップロード
-      $path = Storage::disk('s3')->putFile('review_image', $image, 'public');
-      // アップロードした画像のフルパスを取得、第一引数がフォルダ名
-      //↓フルパスではなく普通のパス(キー)
-      $images->url=$path;
-      $images->review_id=$review->id;
+        //s3アップロード開始
+        $image = $request->file('image');
+        // バケットの`review_image`フォルダへアップロード
+        $path = Storage::disk('s3')->putFile('review_image', $image, 'public');
+        // アップロードした画像のフルパスを取得、第一引数がフォルダ名
+        //↓フルパスではなく普通のパス(キー)
+        $images->url=$path;
+        $images->review_id=$review->id;
 
-      $images->save();
+        $images->save();
 
-      return redirect('/myreview');
-      // 写真は小さめのデータで試す
-      // クチコミのbodyを変える場合はまたコード書かないといけない。あとで！
+        return redirect('/myreview');
+        // 写真は小さめのデータで試す
+        // クチコミのbodyを変える場合はまたコード書かないといけない。あとで！
     }
     
     public function delete(Review $review)

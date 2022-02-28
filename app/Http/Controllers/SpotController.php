@@ -7,7 +7,7 @@ use App\Spot;
 use App\Category;
 use App\Erea;
 use App\Review;
-use App\User;
+// use App\User;
 use App\Image;
 use App\Http\Requests\SpotRequest;
 use Illuminate\Support\Facades\DB;
@@ -19,7 +19,7 @@ class SpotController extends Controller
         $this->category = new Category();
         $this->erea = new Erea();
         $this->review = new Review();
-        $this->user = new User();
+        // $this->user = new User();
         $this->image = new Image();
     }
     

@@ -1,3 +1,8 @@
+@extends('layouts.app')　　　　　　　　　　　　　　　　　　
+
+@section('content')
+
+<!--投稿済みクチコミ編集画面-->
 <!DOCTYPE HTML>
 <html lang="{{ str_replace("_", "-", app()->getLocale()) }}">
     <head>
@@ -35,8 +40,10 @@
         
         <div class="footer">
             <input type="submit" value="保存"/>
-            <a href="/spot/{{$spot->id}}">クチコミを投稿しない</a>
+            <a href="/spot/{{$spot->id}}">クチコミの編集をキャンセル</a>
         </div>
        </form>
     </body>
 </html>
+　　　　　　　　　　　  　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　
+@endsection

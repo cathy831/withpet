@@ -1,3 +1,8 @@
+@extends('layouts.app')　　　　　　　　　　　　　　　　　　
+
+@section('content')
+
+<!--スポット情報の更新-->
 <title>Withpet</title>
 <body>
     <h1 class="title">スポット情報の更新</h1>
@@ -63,3 +68,5 @@
         </form>
     </div>
 </body>
+　　　　　　　　  　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　
+@endsection

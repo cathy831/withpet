@@ -1,24 +1,11 @@
-<?php
-
-use Illuminate\Database\Seeder;
-
-class ReviewTableSeeder extends Seeder
-{
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
-    public function run()
-    {
-        DB::table('reviews')->insert([
+DB::table('reviews')->insert([
            ['id' => '1',
             'body' => 'お店には連れて入れませんが、屋外で散歩することができます。有料駐車場があります。',
             'spot_id' => '2',
             'created_at' => now(),
             'updated_at' => null,
             'deleted_at' => null,
-            'user_id' =>'1',
+            // 'user_id' =>'1',
             ],
            ['id' => '2',
             'body' => 'お店の裏に海があって見晴らしがいいです。犬連れの人が意外と多いです。',
@@ -26,7 +13,7 @@ class ReviewTableSeeder extends Seeder
             'created_at' => now(),
             'updated_at' => null,
             'deleted_at' => null,
-            'user_id' =>'2',
+            // 'user_id' =>'2',
             ],
            ['id' => '3',
             'body' => 'テラス席のみ犬を連れて行けます。カフェとしても食事利用としても行けます。',
@@ -34,7 +21,7 @@ class ReviewTableSeeder extends Seeder
             'created_at' => now(),
             'updated_at' => null,
             'deleted_at' => null,
-            'user_id' =>'1',
+            // 'user_id' =>'1',
             ],
            ['id' => '4',
             'body' => '年中かき氷が食べられます。',
@@ -42,7 +29,7 @@ class ReviewTableSeeder extends Seeder
             'created_at' => now(),
             'updated_at' => null,
             'deleted_at' => null,
-            'user_id' =>'2',
+            // 'user_id' =>'2',
             ],
            ['id' => '5',
             'body' => '1階と2階に分かれていて、2階席がペット同伴可能です。。',
@@ -50,7 +37,7 @@ class ReviewTableSeeder extends Seeder
             'created_at' => now(),
             'updated_at' => null,
             'deleted_at' => null,
-            'user_id' =>'1',
+            // 'user_id' =>'1',
             ],
            ['id' => '6',
             'body' => 'リーズナブルで美味しいです。席数は少なめなので予約するのがいいと思います。',
@@ -58,10 +45,6 @@ class ReviewTableSeeder extends Seeder
             'created_at' => now(),
             'updated_at' => null,
             'deleted_at' => null,
-            'user_id' =>'2',
+            // 'user_id' =>'2',
             ]
         ]);
-    }
-}
-
-// php artisan db:seed --class=UserTableSeederはまだしてない

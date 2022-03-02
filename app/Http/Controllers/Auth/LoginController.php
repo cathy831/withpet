@@ -37,4 +37,25 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+    
+    public function redirectPath()
+    //ログインした際の画面の遷移先はログイン直前のページ
+    {
+        $path = \Session::pull('url.intended');
+        return $path;
+    }
+    
+    public function index()
+    {
+        // if (!session()->has('url.intended')) {
+        //     session(['url.intended' => url()->previous()]);
+        // }
+        // return redirect('login');
+    }
+    
+    protected function loggedOut(\Illuminate\Http\Request $request)
+    //ログアウトした際の画面遷移先は/top
+    {
+        return redirect('/top');
+    }
 }

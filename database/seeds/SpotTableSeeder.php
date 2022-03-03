@@ -13,7 +13,7 @@ class SpotTableSeeder extends Seeder
     {
         DB::table('spots')->insert([
            ['id' => '1',
-            'spot_name' => '海との触れ合い広場',
+            'spot_name' => '海とのふれあい広場',
             'erea_id' => '2',
             'address' => '大阪府堺市堺区匠町6-1',
             'open_close' => '9時-17時',

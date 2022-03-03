@@ -8,7 +8,8 @@ class Review extends Model
 {
     protected $fillable = [
       'body',
-      'spot_id'
+      'spot_id',
+      'user_id'
     ];
     
     public function spot()

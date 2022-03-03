@@ -13,14 +13,15 @@
     </head>
     <body>
         
-        <div class="own_reviews">
-            
-            <h4>自分の投稿済みクチコミ一覧</h4>
-            
-            @foreach($own_reviews as $review)
-                <h3><a href="/spot/{{ $review->spot->id }}">{{ $review->spot->spot_name }}</a></h3>
-                
-                <p>{{ $review->body }}</p>
+        <h4>クチコミ</h4>
+        @foreach($reviews as $review)
+        
+            <h3>{{$review['name']}}</h3>
+        
+            @foreach($review['reviews'] as $review)
+            <!--連想配列、キーと値をセットで扱う。コントローラーを連想配列でかくとこの書き方-->
+                <p>{{$review->body}}</p>
+                <!--クチコミ本文の表示-->
                 
                 <p>
                 @foreach($images as $image)
@@ -44,21 +45,15 @@
             　　</form>
             　　
             @endforeach
-            
-   
-            <div class='paginate'>
-                {{ $own_reviews->links() }}
-            </div>
-            
-            <div class="footer">
-                <a href="/top">戻る</a>
-            </div>
-            
+
+        @endforeach
+        
+        <div class="footer">
+            <a href="/top">戻る</a>
         </div>
         
         <script>
-            function deletePost(e)
-            {
+            function deletePost(e){
                 'use strict';
                 if(confirm('削除すると復元できません。\n本当に削除しますか？')){
                     document.getElementById(`form_${e}`).submit();
@@ -66,7 +61,6 @@
                 }
             }
         </script>
-        
     </body>
 </html>
 　　　　　　　　　　　　  　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　

@@ -29,7 +29,6 @@
         @foreach($spot->reviews as $review) 
             <p class='review'>
                 {{--<h6>{{$review->user->nickname}} さん</h6>--}}
-                <small>{{ $review->user->nickname }} さん</small>
                 <p>{{$review->body}}</p>
             </p>
             

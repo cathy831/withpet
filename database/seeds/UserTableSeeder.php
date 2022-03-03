@@ -12,7 +12,7 @@ class UserTableSeeder extends Seeder
     public function run()
     {
         DB::table('users')->insert([
-           ['id' => '1',
+           [//'id' => '1',
             'name' => '相生',
             'nickname' => 'あい',
             'gender' => 'male',
@@ -23,7 +23,7 @@ class UserTableSeeder extends Seeder
             'created_at'=>now(),
             'updated_at'=>now(),
             'deleted_at'=>null],
-           ['id' => '2',
+           [//'id' => '2',
             'name' => '井上',
             'nickname' => 'いう',
             'gender' => 'female',
@@ -34,7 +34,7 @@ class UserTableSeeder extends Seeder
             'created_at'=>now(),
             'updated_at'=>now(),
             'deleted_at'=>null],
-           ['id' => '3',
+           [//'id' => '3',
             'name' => '上野',
             'nickname' => 'うえ',
             'gender' => 'male',

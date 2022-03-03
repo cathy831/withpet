@@ -17,7 +17,6 @@ class CreateReviewsTable extends Migration
             $table->bigIncrements('id');
             $table->text('body',1000)->nullable();
             $table->integer('spot_id')->unsigned();
-            $table->integer('user_id')->unsigned();
             $table->timestamps();
             $table->softDeletes();
         });

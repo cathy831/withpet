@@ -38,12 +38,12 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
     
-    public function redirectPath()
-    //ログインした際の画面の遷移先はログイン直前のページ
-    {
-        $path = \Session::pull('url.intended');
-        return $path;
-    }
+    // public function redirectPath()
+    // //ログインした際の画面の遷移先はログイン直前のページ
+    // {
+    //     $path = \Session::pull('url.intended');
+    //     return $path;
+    // }
     
     public function index()
     {

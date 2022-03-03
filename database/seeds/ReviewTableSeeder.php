@@ -63,5 +63,3 @@ class ReviewTableSeeder extends Seeder
         ]);
     }
 }
-
-// php artisan db:seed --class=UserTableSeederはまだしてない

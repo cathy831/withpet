@@ -35,7 +35,7 @@ class SpotController extends Controller
         $category_name =[];
  
         $query = Spot::query();
-        //先にereaで絞り込んで、categoryを絞り込み
+        //先にereaで絞り込んで、そのあとcategoryを絞り込み
  
         if (!empty($erea)) {
         //!は否定。空じゃないときにif文実行

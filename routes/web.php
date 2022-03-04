@@ -13,6 +13,7 @@
 
 
 // web.phpの01を消したらbladeのa.hrefタグの変更、コントローラーのリダイレクトの部分を変更
+
 Route::get('/top','SpotController@index');
 //スポットの表示
 //検索したい条件をデータベースに送って表示もする

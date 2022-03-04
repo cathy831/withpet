@@ -1,8 +1,9 @@
+<!--新規スポット登録画面-->
+
 @extends('layouts.app')　　　　　　　　　　　　　　　　　　
 
 @section('content')
 
-<!--新規スポット登録画面-->
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -11,11 +12,13 @@
         <title>WithPet</title>
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;600&display=swap" rel="stylesheet">
+        {{-- CSSは変更 → <link rel="stylesheet" href="{{ asset('css/store.css') }}"> --}}
     </head>
     
     <body>
        
-       <form action="/top" method="POST">
+        <!--新規スポット投稿フォーム-->
+        <form action="/top" method="POST">
             @csrf
             
             <div class="spot_name">
@@ -25,24 +28,24 @@
             </div>
             
             <div class="category">
-              <h2>目的</h2>
+                <h2>目的</h2>
                 @foreach ($categories as $category)
-                  <input name="category_id[{{$category->id}}]" type="checkbox" value="{{ $category->id }}" 
-                    {{ old('category.'.$category->id) == $category->id ? 'checked' : '' }}>
-                  <label class="form-check-label">
-                      {{ $category->category_name }}
-                  </label>
+                    <input name="category_id[{{$category->id}}]" type="checkbox" value="{{ $category->id }}" 
+                        {{ old('category.'.$category->id) == $category->id ? 'checked' : '' }}>
+                    <label class="form-check-label">
+                        {{ $category->category_name }}
+                    </label>
                 @endforeach
             </div>
             
             <div class="erea">
-              <h2>エリア</h2>    
+                <h2>エリア</h2>    
                 @foreach($ereas as $erea)
-　　              <input type="radio" name="erea_id" id="erea_id"  value="{{ $erea->id }}" 
-                    {{ $erea->id == old('erea_id') ? 'checked' : ''}}/>
-                  <label for="erea">
-                    {{ $erea->erea_name  }}
-                  </label>  
+　　                <input type="radio" name="erea_id" id="erea_id"  value="{{ $erea->id }}" 
+                        {{ $erea->id == old('erea_id') ? 'checked' : ''}}/>
+                    <label for="erea">
+                        {{ $erea->erea_name  }}
+                    </label>  
                 @endforeach
             </div>
             

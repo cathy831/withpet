@@ -1,3 +1,5 @@
+<!--自分の投稿済みのクチコミ一覧-->
+
 @extends('layouts.app')　　　　　　　　　　　　　　　　　　
 
 @section('content')
@@ -10,6 +12,7 @@
         <title>Withpet</title>
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+        {{-- CSSは変更 → <link rel="stylesheet" href="{{ asset('css/myreview.css') }}"> --}}
     </head>
     <body>
         
@@ -32,20 +35,18 @@
                 </p>
                 
                 <p class="edit">[<a href="/review/{{ $review->id }}">レビューの編集</a>]</p>
-                 <!--レビュー編集の画面に飛ばした時に既にあるクチコミを保持するように-->
             
             　　<form action="/review/{{ $review->id }}" id="form_{{ $review->id }}" method="post" style="display:inline">
             　　@csrf
             　　@method('DELETE')
                 　　<div class="delete">
                     　　<button type="button" onclick="deletePost({{$review->id}})">delete</button>
-                    　　<!--submitにするといきなり送信されてしまうのでtypeに注意.関数名()を書いてjavascriptを挟む-->
+                    　　<!--type=submitにするといきなり送信されてしまうので注意。関数名()を書いてjavascriptを挟む-->
                 　　</div>
             　　</form>
             　　
             @endforeach
             
-   
             <div class='paginate'>
                 {{ $own_reviews->links() }}
             </div>
@@ -62,7 +63,7 @@
                 'use strict';
                 if(confirm('削除すると復元できません。\n本当に削除しますか？')){
                     document.getElementById(`form_${e}`).submit();
-                    // javascriptの文字列を埋め込む場合バッククォーテーションと$
+                    {{-- javascriptの文字列を埋め込む場合バッククォーテーションと$ --}}
                 }
             }
         </script>

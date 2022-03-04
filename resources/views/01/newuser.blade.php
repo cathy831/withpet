@@ -1,8 +1,9 @@
+<!--新規ユーザー登録画面/もともと入ってるやつ使うならこれは使わない-->
+
 @extends('layouts.app')　　　　　　　　　　　　　　　　　　
 
 @section('content')
 
-<!--新規ユーザー登録画面/もともと入ってるやつ使うならこれは使わない-->
 <!DOCTYPE HTML>
 <html lang="{{ str_replace("_", "-", app()->getLocale()) }}">
     <head>

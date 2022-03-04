@@ -1,3 +1,5 @@
+<!--検索画面-->
+
 @extends('layouts.app')　　　　　　　　　　　　　　　　　　
 
 @section('content')
@@ -17,16 +19,18 @@
         <p>[<a href='/store'>スポット登録</a>]</p>
         <p>[<a href='/myreview'>投稿済みのクチコミを見る</a>]</p>
         
-    {{--チェックボックス検索の実装--}}
+    {{--検索の実装--}}
         <div class='filter_search'>
             <h2 class='serch_01'>スポット検索</h2>
             {{--↑あとで消す--}}
             <div class="filter_tag">
                 <form action="/top" method="GET">
                     @csrf
-                {{--actionの後は動作に名前をつける感覚。methodはRouteの後と一致--}}
+                {{--actionの後は動作に名前をつける感覚、formの送信先。methodはweb.phpのRouteの後と一致させる--}}
+                
+                    <!--カテゴリーのチェックボックス検索-->
                     <h3>目的</h3>
-                    <p>複数選択可</p>
+                    <small>複数選択可</small>
                         @foreach($categories as $category)
                             <input type="checkbox" name="category_id[]" id="category_id" value="{{ $category->id }}" 
                                 {{ $category->id == old('category') ? 'checked' : ''}} />
@@ -34,24 +38,29 @@
                                 {{ $category->category_name  }}
                             </label>  
                         @endforeach
+                        
+                    <!--エリアのラジオボタン検索-->
                     <h3>エリア</h3>
-                    <p>複数選択不可</p>
+                    <small>複数選択不可</small>
                         @foreach($ereas as $erea)
                             <input type="radio" name="erea_id" id="erea_id" value="{{ $erea->id }}" 
                                 {{ $erea->id == old('erea') ? 'checked' : ''}}/>
                             <label for="erea">
-                                {{ $erea->erea_name  }}
+                                {{ $erea->erea_name }}
                             </label>  
                         @endforeach
+                        
                     <div class="serch_button">
                         <input type="submit" value="検索">
                     </div>
                 </form>
              </div>
         </div>
-        
-    {{--実際は人気項目を表示させたい。要編集。--}}
+    
+        <!--検索結果の表示-->
         @if($spots->count())
+        
+        <!--何の検索結果かを表示-->
         <div class='search_result'>
             @foreach($category_name as $category)
                {{ $category->category_name }}
@@ -62,13 +71,14 @@
         
         <br>
         
+        <!--検索結果表示実際は人気項目順に表示させたい。要編集-->
         <div class='spots'>
             @foreach ($spots as $spot)
                 <div class='spot'>
                     <h4 class='spot_name'><a href="/spot/{{ $spot->id }}">{{$spot->spot_name}}</a></h4>
                     <p class='erea_id'>{{$spot->erea->erea_name}}</p>
                     @foreach($spot->categories as $category)   
-                       <!--<p class='category_id'></p>-->
+                       <!--<p class='category_id'>CSS編集時に下のcategory_nameを入れる</p>-->
                        {{$category->category_name}}
                     @endforeach
                     <h6>住所</h6>
@@ -85,10 +95,9 @@
         
         @else
         
-        
         @endif
         
-        {{--つけれるならつけたいペジネーション
+        {{--9件ずつペジネーション。このままだとエラーが出るので要編集。
         <div class='paginate'>
             {{ $spots->links() }}
         </div>

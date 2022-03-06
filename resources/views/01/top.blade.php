@@ -21,7 +21,8 @@
         
     {{--検索の実装--}}
         <div class='filter_search'>
-            <h2 class='serch_01'>スポット検索</h2>
+            <h2 class='search_01'>スポット検索</h2>
+            <small></small>
             {{--↑あとで消す--}}
             <div class="filter_tag">
                 <form action="/top" method="GET">
@@ -30,27 +31,39 @@
                 
                     <!--カテゴリーのチェックボックス検索-->
                     <h3>目的</h3>
-                    <small>複数選択可</small>
-                        @foreach($categories as $category)
-                            <input type="checkbox" name="category_id[]" id="category_id" value="{{ $category->id }}" 
-                                {{ $category->id == old('category') ? 'checked' : ''}} />
-                            <label for="category">
-                                {{ $category->category_name  }}
-                            </label>  
-                        @endforeach
+                    <div class="circle">
+                        <small class="circle1"></small>
+                        <small class="circle2"></small>
+                        <small class="circle3"></small>
+                    </div>
+                    <small class="category_option">複数選択可</small>
+                    <br><br>
+                    @foreach($categories as $category)
+                        <input type="checkbox" name="category_id[]" id="category_id" value="{{ $category->id }}" 
+                            {{ $category->id == old('category') ? 'checked' : ''}} />
+                        <label for="category">
+                            <p class="search_category">{{ $category->category_name  }}</p>
+                        </label>
+                    @endforeach
                         
                     <!--エリアのラジオボタン検索-->
                     <h3>エリア</h3>
-                    <small>複数選択不可</small>
-                        @foreach($ereas as $erea)
-                            <input type="radio" name="erea_id" id="erea_id" value="{{ $erea->id }}" 
-                                {{ $erea->id == old('erea') ? 'checked' : ''}}/>
-                            <label for="erea">
-                                {{ $erea->erea_name }}
-                            </label>  
-                        @endforeach
-                        
-                    <div class="serch_button">
+                    <div class="circle">
+                        <small class="circle1"></small>
+                        <small class="circle2"></small>
+                        <small class="circle3"></small>
+                    </div>
+                    <small class="erea_option">複数選択不可</small>
+                    <br><br>
+                    @foreach($ereas as $erea)
+                        <input type="radio" name="erea_id" id="erea_id" value="{{ $erea->id }}" 
+                            {{ $erea->id == old('erea') ? 'checked' : ''}}/>
+                        <label for="erea">
+                            <p class="search_erea">{{ $erea->erea_name }}</p>
+                        </label>  
+                    @endforeach
+                    
+                    <div class="search_button">
                         <input type="submit" value="検索">
                     </div>
                 </form>
@@ -63,10 +76,10 @@
         <!--何の検索結果かを表示-->
         <div class='search_result'>
             @foreach($category_name as $category)
-               {{ $category->category_name }}
+               <p class="search_result01">{{ $category->category_name }}</p>
             @endforeach
-            {{ $erea_name }}
-            検索結果
+            <p class="search_result02">{{ $erea_name }}</p>
+            <p>検索結果</p>
         </div>
         
         <br>
@@ -76,16 +89,21 @@
             @foreach ($spots as $spot)
                 <div class='spot'>
                     <h4 class='spot_name'><a href="/spot/{{ $spot->id }}">{{$spot->spot_name}}</a></h4>
-                    <p class='erea_id'>{{$spot->erea->erea_name}}</p>
-                    @foreach($spot->categories as $category)   
-                       <!--<p class='category_id'>CSS編集時に下のcategory_nameを入れる</p>-->
-                       {{$category->category_name}}
-                    @endforeach
-                    <h6>住所</h6>
+                    <div class="check_redio_all">
+                        <div class="category_erea">
+                            <p class='erea_name'>{{$spot->erea->erea_name}}</p>
+                        </div>
+                        <div class="category_erea">
+                            @foreach($spot->categories as $category)   
+                                <p class="category_name">{{$category->category_name}}</p>
+                            @endforeach
+                        </div>
+                    </div>
+                    <h6 class="spot_item1">住所</h6><!--<small class="circle4"></small>-->
                     <p class='address'>{{$spot->address}}</p>
-                    <h6>営業時間</h6>
+                    <h6 class="spot_item2">営業時間</h6><!--<small class="circle5"></small>-->
                     <p class='open_close'>{{$spot->open_close}}</p>
-                    <h6>定休日</h6>
+                    <h6 class="spot_item3">定休日</h6><!--<small class="circle6"></small>-->
                     <p class='off'>{{$spot->off}}</p>
                     <br>
                     <br>

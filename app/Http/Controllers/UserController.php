@@ -15,6 +15,7 @@ class UserController extends Controller
     }
     
     public function index(User $user)
+    //自分の投稿済みクチコミの一覧表示
     {
         $images = $this->image->get();
         return view('01.myreview', compact('images'))->with(['own_reviews' => $user->getOwnPaginateByLimit()]);

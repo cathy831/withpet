@@ -15,9 +15,9 @@
     </head>
     
     <body>
-        
-        <p>[<a href='/store'>スポット登録</a>]</p>
-        <p>[<a href='/myreview'>投稿済みのクチコミを見る</a>]</p>
+         
+        <p><a href='/store'>スポット登録</a></p>
+        <p><a href='/myreview'>投稿済みのクチコミを見る</a></p>
         
     {{--検索の実装--}}
         <div class='filter_search'>
@@ -88,7 +88,9 @@
         <div class='spots'>
             @foreach ($spots as $spot)
                 <div class='spot'>
+                    
                     <h4 class='spot_name'><a href="/spot/{{ $spot->id }}">{{$spot->spot_name}}</a></h4>
+                    
                     <div class="check_redio_all">
                         <div class="category_erea">
                             <p class='erea_name'>{{$spot->erea->erea_name}}</p>
@@ -99,11 +101,14 @@
                             @endforeach
                         </div>
                     </div>
-                    <h6 class="spot_item1">住所</h6><!--<small class="circle4"></small>-->
+                    
+                    <h6 class="spot_items">住所</h6><!--<small class="circle4"></small>-->
                     <p class='address'>{{$spot->address}}</p>
-                    <h6 class="spot_item2">営業時間</h6><!--<small class="circle5"></small>-->
+                    
+                    <h6 class="spot_items">営業時間</h6><!--<small class="circle5"></small>-->
                     <p class='open_close'>{{$spot->open_close}}</p>
-                    <h6 class="spot_item3">定休日</h6><!--<small class="circle6"></small>-->
+                    
+                    <h6 class="spot_items">定休日</h6><!--<small class="circle6"></small>-->
                     <p class='off'>{{$spot->off}}</p>
                     <br>
                     <br>

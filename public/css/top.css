@@ -1,5 +1,7 @@
 body{
-    background-color: #fbfaf5;/*生成色*/
+    background-color: #f8f4e6;/*象牙色*/
+    /*fbfaf5/*生成色*/
+    /*f8f4e6/*象牙色*/
     font-family: 'Tsukushi A Round Gothic'; font-weight: normal;
 }
 
@@ -80,6 +82,7 @@ h3{
     color: #ffffff;
     position: relative;
     padding: 3px;
+    margin-right: 20px;
     display: flex;/*横に並べる*/
     background: #bbc8e6;/*淡藤*/
     border-radius: 8px 8px 8px 8px;
@@ -98,6 +101,7 @@ h3{
     text-align: center;
     position: relative;
     padding: 3px;
+    margin-right: 20px;
     display: flex;/*横に並べる*/
     background: #ffffff;
     border-radius: 8px 8px 8px 8px;
@@ -130,6 +134,7 @@ h3{
     background: #ffffff;
     border-radius: 8px 8px 8px 8px;
 }
+/*検索前の画面で謎の白い玉がつく*/
 
 .spots{
     /*左揃えうまくいってない*/
@@ -172,8 +177,8 @@ h3{
 
 .check_redio_all{
     display: flex;
-    justify-content: center;
-    align-items: baseline;
+    justify-content: center;/*親要素に左右のの空白がある場合水平方向は中央で揃える*/
+    align-items: baseline;/*親要素に上下の空白がある場合垂直方向はベースラインで揃える*/
 }
 
 .category_erea{
@@ -182,7 +187,7 @@ h3{
     text-align: center;
     display: flex;
     justify-content: space-around;
-    align-items: center;
+    align-items: center;/*親要素に上下の空白がある場合垂直方向は中央で揃える*/
 }
 
 .erea_name{
@@ -200,17 +205,18 @@ h3{
     margin: 3px;
 }
 
-.spot_item1{
+.spot_items{
+    position: relative;
     display: inline-block;
     border-bottom: solid 3px #ffffff;
 }
 
-.spot_item2{
-    display: inline-block;
-    border-bottom: solid 3px #ffffff;
-}
-
-.spot_item3{
-    display: inline-block;
-    border-bottom: solid 3px #ffffff;
+.spot_items:before{
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    width: 5px;
+    height: inherit;
+    border-bottom: 3px solid #2792c3;
 }

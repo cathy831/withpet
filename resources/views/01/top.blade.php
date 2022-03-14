@@ -41,7 +41,7 @@
                         <input type="checkbox" name="category_id[]" id="category_id" value="{{ $category->id }}" 
                             {{ $category->id == old('category') ? 'checked' : ''}} />
                         <label for="category">
-                            <p class="search_category">{{ $category->category_name  }}</p>
+                            <p class="search_category">{{ $category->category_name }}</p>
                         </label>
                     @endforeach
                         

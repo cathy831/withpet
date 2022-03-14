@@ -31,9 +31,10 @@
                                 @endif
                             @endforeach
                             {{-- $images->links() --}}
+                            <!--写真のページネーションを作る-->
                         </p>
                         <p>{{ $review->body }}</p>
-                        <p class="edit">[<a href="/review/{{ $review->id }}">レビューの編集</a>]</p>
+                        <p class="edit"><a href="/review/{{ $review->id }}">レビューの編集</a></p>
              
                     　　<form action="/review/{{ $review->id }}" id="form_{{ $review->id }}" method="post" style="display:inline">
                         　　@csrf
@@ -41,7 +42,7 @@
                         　　<div class="delete">
                             　　<button type="button" onclick="deletePost({{$review->id}})">削除</button>
                             　　<!--type=submitにするといきなり動作が送信されてしまう。関数名括弧を書いてJSを挟む-->
-                                <!--写真のページネーションを作る-->
+                                <!--review bforeのabsoluteによってボタンが機能しなくなってる-->
                         　　</div>
                     　　</form>
             　　      </div>

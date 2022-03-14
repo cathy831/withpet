@@ -52,3 +52,7 @@ h4 a{
     width: 300px;
     height: 300px;
 }
+
+.edit a{
+    position: relative;/*review bforeのabsoluteによってリンクが消えるので入れる*/
+}

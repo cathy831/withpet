@@ -23,7 +23,6 @@
         <div class='filter_search'>
             <h2 class='search_01'>スポット検索</h2>
             <small></small>
-            {{--↑あとで消す--}}
             <div class="filter_tag">
                 <form action="/top" method="GET">
                     @csrf
@@ -125,7 +124,7 @@
             {{ $spots->links() }}
         </div>
         --}}
-   </body>
+    </body>
 </head>
 
 @endsection

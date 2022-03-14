@@ -1,0 +1,54 @@
+body{
+    background-color: #f8f4e6;/*象牙色*/
+    /*fbfaf5/*生成色*/
+    /*f8f4e6/*象牙色*/
+    color: #7b7c7b;
+    font-family: 'Tsukushi A Round Gothic'; font-weight: normal;
+}
+
+.own_reviews{
+    padding-left: 20px;
+}
+
+.reviews{
+    display: flex;/*横並び*/
+    justify-content: flex-start;/*親要素に左右の空白がある場合水平方向は左詰めで揃える*/
+    /*align-items: baseline;親要素に上下の空白がある場合垂直方向はベースラインで揃える*/
+    
+}
+
+.review{
+    position: relative;
+    background-color: #ffffff;
+    width: 30%;
+    padding: 20px;
+    margin: 30px;
+    text-align: center;
+    vertical-align: top;/*上揃え*/
+    border-radius: 40px 10px 10px 10px;
+}
+/*レビューの本文の量の違いで高さが揃わない場合はどういう表示になるかが確認できてない*/
+
+.review:before{
+    position: absolute;
+    top: -7px;
+    left: -7px;
+    width: 100%;
+    height: 100%;
+    content: '';
+    border: 2px solid #f8e58c;
+    border-radius: 40px 10px 10px 10px;
+}
+
+h4{
+    font-family: 'Tsukushi A Round Gothic'; font-weight: bold;
+}
+
+h4 a{
+    position: relative;/*review bforeのabsoluteによってリンクが消えるので入れる*/
+}
+
+.image{
+    width: 300px;
+    height: 300px;
+}

@@ -1,0 +1,17 @@
+body{
+    background-color: #f8f4e6;/*象牙色*/
+    /*fbfaf5/*生成色*/
+    /*f8f4e6/*象牙色*/
+}
+
+.card-header{
+    color: #7b7c7b;
+    font-family: 'Tsukushi A Round Gothic'; font-weight: bold;
+    background: #f8e58c;/*淡黄*/
+}
+
+.card-body{
+    color: #7b7c7b;
+    font-family: 'Tsukushi A Round Gothic'; font-weight: normal;
+    background: #fbfaf5;/*生成色*/
+}

@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Auth;
 use Illuminate\Database\Eloquent\Model;
 
 class Review extends Model
@@ -26,4 +27,10 @@ class Review extends Model
     {
         return $this->belongsTo('App\User');
     }
+    
+    public function getOwnPaginateByLimit(int $limit_count2 = 1)
+    {
+        return $this::with('images')->find(Review::id())->images()->orderBy('updated_at', 'DESC')->paginate($limit_count2);
+    }
+    // myreview.bladeにおける写真のページネーション
 }

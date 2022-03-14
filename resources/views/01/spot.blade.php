@@ -14,6 +14,7 @@
         <link rel="stylesheet" href="{{ asset('css/spot.css') }}">
     </head>
     <body>
+        
         <div class="spot_body">
             <h1 class="spot_name">{{ $spot->spot_name }}</h1>
             <div class="circle">
@@ -59,7 +60,6 @@
                                     @if($image->review_id == $review->id)
                                         <div class="review_image">
                                             <img src="{{ asset('https://withpet.s3.ap-northeast-1.amazonaws.com/' . $image->url) }}" class="image">
-                                            <!--写真の表示-->
                                         </div>
                                     @endif
                                 @endforeach
@@ -81,7 +81,7 @@
                     @csrf
                     @method('DELETE')
                         <p class="delete">
-                            <button type="submit">delete</button> 
+                            <button type="submit">削除</button> 
                         </p>
                 </form>
                 

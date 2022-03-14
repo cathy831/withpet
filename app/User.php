@@ -52,4 +52,6 @@ class User extends Authenticatable
     {
         return $this::with('reviews')->find(Auth::id())->reviews()->orderBy('updated_at', 'DESC')->paginate($limit_count);
     }
+    // myreview.bladeにおけるレビューのページネーション
+    
 }
